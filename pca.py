@@ -52,8 +52,8 @@ g = [float(x) for x in final_data[:, 1]]
 
 plt.scatter(f, g, marker='*', label="Transformed Data")
 plt.legend()
+plt.savefig("Original_Data_Adjusted_data_and_Transformed_Plot.png")
 plt.show()
-plt.savefig("Original Data, Adjusted data and Transformed Plot")
 
 """
 Compare the variance of the two columns of the transformed_data choose the one with high variance.
