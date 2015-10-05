@@ -51,11 +51,24 @@ f = [float(x) for x in final_data[:, 0]]
 g = [float(x) for x in final_data[:, 1]]
 
 plt.scatter(f, g, marker='*', label="Transformed Data")
-plt.legend()
-plt.savefig("Original_Data_Adjusted_data_and_Transformed_Plot.png")
-plt.show()
 
 """
 Compare the variance of the two columns of the transformed_data choose the one with high variance.
 In case of more than one column select the columns with variance above the threshold.
 """
+
+# Best fit line for mean adjusted points
+A = np.vstack([x_, np.ones(len(x_))]).T
+m, c = np.linalg.lstsq(A, y_)[0]
+line = [(m * k) + c for k in x_]
+b = [float(k) for k in x_]
+plt.plot(b, line, 'r', label='Fitted line')
+
+# Best fit line for transformed data.
+A_ = np.vstack([f, np.ones(len(f))]).T
+m_, c_ = np.linalg.lstsq(A_, g)[0]
+line_ = [(m_ * k) + c_ for k in f]
+plt.plot(f, line_, 'g', label='Fitted line for transformed data')
+plt.legend()
+plt.savefig("Original_Data_Adjusted_data_and_Transformed_Plot.png")
+plt.show()
